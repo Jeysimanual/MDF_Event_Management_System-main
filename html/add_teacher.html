@@ -19,7 +19,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
-        input {
+        input, select {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -47,16 +47,20 @@
             <input type="text" name="fullname" placeholder="Full Name" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="username" placeholder="Username" required>
-            <input type="text" name="year_level_advisor" placeholder="Year Level Advisor" required>
+            <select name="year_level_advisor" required>
+                <option value="" disabled selected>Select Year Level Advisor</option>
+                <option value="7">Grade 7</option>
+                <option value="8">Grade 8</option>
+                <option value="9">Grade 9</option>
+                <option value="10">Grade 10</option>
+                <option value="11">Grade 11</option>
+                <option value="12">Grade 12</option>
+            </select>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Register</button>
         </form>
     </div>
 
     <script type="module" src="../js/add_teacher.js"></script>
-
-
 </body>
-
-
 </html>

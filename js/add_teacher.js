@@ -1,6 +1,6 @@
 // Import Firebase modules from mdf-dtb.js
 import { auth, realtimeDb } from "../config/mdf-dtb.js";
-import { ref, set, push } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+import { ref, set } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const fullname = document.querySelector("input[name='fullname']").value.trim();
         const email = document.querySelector("input[name='email']").value.trim();
         const username = document.querySelector("input[name='username']").value.trim();
-        const year_level_advisor = document.querySelector("input[name='yearl_level_advisor']").value.trim();
+        const year_level_advisor = document.querySelector("select[name='year_level_advisor']").value;
         const password = document.querySelector("input[name='password']").value.trim();
 
-        if (!fullname || !email || !username || !password) {
+        if (!fullname || !email || !username || !year_level_advisor || !password) {
             alert("Please fill in all fields.");
             return;
         }
@@ -28,12 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 const uid = user.uid; // Unique user ID assigned by Firebase
 
                 // 🔹 Save user details (excluding password) in Realtime Database
-                const userRef = ref(realtimeDb, `users/${uid}`); // Store user data under their UID
+                const userRef = ref(realtimeDb, `teachers/${uid}`); // Store user data under their UID
                 return set(userRef, {
                     fullname,
                     email,
                     username,
-                    year_level_advisor
+                    year_level_advisor,
+                    role: "teacher"
                 });
             })
             .then(() => {
