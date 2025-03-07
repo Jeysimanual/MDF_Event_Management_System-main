@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard</h1>
+    <p>You have successfully logged in.</p>
+    
+    <button id="create-btn">Create Event</button>
+    <button id="events-btn">Events</button>
+    <header>
+        <a href="teacher_list.html" class="btn teacher_list-btn">Teacher</a>
+    </header>
+    <button id="logout-btn">Log Out</button>
+
+    <script>
+        // Navigate to create_event.html when clicking "Create Event"
+        document.getElementById("create-btn").addEventListener("click", function() {
+            window.location.href = "create_event.html"; // Adjust the path if necessary
+        });
+
+        // Example: Add navigation for "Events" button (if needed)
+        document.getElementById("events-btn").addEventListener("click", function() {
+            window.location.href = "events.html"; // Adjust if you have an events page
+        });
+    </script>
+
+    <script type="module" src="../js/logout.js"></script>
+</body>
+</html>

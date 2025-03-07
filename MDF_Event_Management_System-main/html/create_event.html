@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+</head>
+<body>
+    <h2>Create Event</h2>
+    <form id="eventForm">
+        <label for="eventName">Event Name:</label>
+        <input type="text" name="eventName" required><br><br>
+
+        <label for="eventDescription">Event Description:</label>
+        <textarea name="eventDescription" required></textarea><br><br>
+
+        <label for="venue">Venue:</label>
+        <input type="text" name="venue" required><br><br>
+
+        <label for="activationDate">Activation Date:</label>
+        <input type="date" name="activationDate" required><br><br>
+
+        <label for="activationTime">Activation Time:</label>
+        <input type="time" name="activationTime" required><br><br>
+
+        <label for="startDate">Start Date:</label>
+        <input type="date" name="startDate" required><br><br>
+
+        <label for="endDate">End Date:</label>
+        <input type="date" name="endDate" required><br><br>
+
+        <label for="startTime">Start Time:</label>
+        <input type="time" name="startTime" required><br><br>
+
+        <label for="endTime">End Time:</label>
+        <input type="time" name="endTime" required><br><br>
+
+        <label for="eventSpan">Event Span:</label>
+        <select name="eventSpan" required>
+            <option value="single-day">Single Day</option>
+            <option value="multi-day">Multiple Days</option>
+        </select><br><br>
+
+        <label for="ticketType">Ticket Type:</label>
+        <select name="ticketType" required>
+            <option value="free">Free</option>
+            <option value="paid">Paid</option>
+        </select><br><br>
+
+        <button type="submit">Create Event</button>
+    </form>
+
+    <script type="module" src="/js/create_event.js"></script>
+</body>
+</html>
