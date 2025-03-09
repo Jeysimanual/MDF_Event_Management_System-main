@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form from refreshing the page
 
-        // Get form input values
         const email = document.querySelector("input[name='email']").value.trim();
         const password = document.querySelector("input[name='password']").value.trim();
 
@@ -17,12 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 🔹 Sign in user with Firebase Authentication
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user; // Get logged-in user details
-                console.log("Login successful, user:", user); // Log user details
-                window.location.href = "html/dashboard.html"; // Redirect to dashboard
+                const user = userCredential.user;
+
+                if (user.emailVerified) {
+                    console.log("Login successful, user:", user);
+                    window.location.href = "html/dashboard.html";
+                } else {
+                    alert("Please verify your email before logging in.");
+                    auth.signOut();
+                }
             })
             .catch((error) => {
                 console.error("Login error: ", error);

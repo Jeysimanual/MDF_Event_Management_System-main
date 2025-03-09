@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 10px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-top: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create Event</h2>
+        <form id="eventForm">
+            
+            <div class="section">
+                <div class="form-group">
+                    <label for="eventName">Event Name:</label>
+                    <input type="text" id="eventName" name="eventName" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">Event Description:</label>
+                    <textarea id="eventDescription" name="eventDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type:</label>
+                    <select id="eventType" name="eventType" required>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Off-Campus Activity">Off-Campus Activity</option>
+                        <option value="Sports Event">Sports Event</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group" id="otherEventTypeGroup" style="display: none;">
+                    <label for="otherEventType">Specify Event Type:</label>
+                    <input type="text" id="otherEventType" name="otherEventType">
+                </div>
+                
+                <div class="form-group">
+                    <label for="venue">Venue:</label>
+                    <input type="text" id="venue" name="venue" required>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="form-group">
+                    <label for="eventSpan">Event Span:</label>
+                    <select id="eventSpan" name="eventSpan" required>
+                        <option value="single-day">Single Day</option>
+                        <option value="multi-day">Multiple Days</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="startTime">Start Time:</label>
+                    <input type="time" id="startTime" name="startTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" name="endDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="endTime">End Time:</label>
+                    <input type="time" id="endTime" name="endTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketActivationTime">Ticket Activation Time:</label>
+                    <input type="time" id="ticketActivationTime" name="ticketActivationTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="graceTime">Grace Time (minutes):</label>
+                    <input type="number" id="graceTime" name="graceTime" required>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="form-group">
+                    <label for="ticketType">Ticket Type:</label>
+                    <select id="ticketType" name="ticketType" required>
+                        <option value="free">Free</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventPhoto">Upload Event Photo:</label>
+                    <input type="file" id="eventPhoto" name="eventPhoto" accept="image/*" required>
+                </div>
+            </div>
+            
+            <button type="submit">Create Event</button>
+        </form>
+    </div>
+
+    <script type="module" src="../js/create_event.js"></script>
+
+</body>
+</html>

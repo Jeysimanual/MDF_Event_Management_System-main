@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <script type="module">
+    import { realtimeDb } from "../config/mdf-dtb.js";
+    import { ref, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+    document.addEventListener('DOMContentLoaded', async function() {
+      const events = await fetchEvents();
+      const combinedEvents = combineEvents(events);
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: combinedEvents,
+        displayEventEnd: true,
+        eventDisplay: 'block',
+        eventClick: function(info) {
+          window.location.href = `events_inside.html?eventId=${info.event.id}`;
+        }
+      });
+      calendar.render();
+    });
+
+    async function fetchEvents() {
+      const eventsRef = ref(realtimeDb, "events");
+      return new Promise((resolve, reject) => {
+        onValue(eventsRef, (snapshot) => {
+          if (snapshot.exists()) {
+            const events = Object.entries(snapshot.val()).map(([id, event]) => ({
+              id,
+              title: event.eventName,
+              start: event.startDate,
+              end: new Date(new Date(event.endDate).setDate(new Date(event.endDate).getDate() + 1)).toISOString().split('T')[0],
+              allDay: true
+            }));
+            resolve(events);
+          } else {
+            console.log("No events found.");
+            resolve([]);
+          }
+        }, (error) => {
+          console.error("Error fetching events: ", error);
+          reject(error);
+        });
+      });
+    }
+
+    function combineEvents(events) {
+      const combined = {};
+
+      events.forEach(event => {
+        if (!combined[event.title]) {
+          combined[event.title] = { ...event };
+        } else {
+          combined[event.title].end = event.end > combined[event.title].end ? event.end : combined[event.title].end;
+        }
+      });
+
+      return Object.values(combined);
+    }
+  </script>
+</head>
+<body>
+  <div id='calendar'></div>
+</body>
+</html>
